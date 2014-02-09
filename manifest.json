@@ -32,6 +32,7 @@
 	}],
 	"web_accessible_resources": [
 		"icons/icon24.png",
-		"templates/logo.mustache"
+		"templates/logo.mustache",
+		"templates/button.mustache"
 	]
 }

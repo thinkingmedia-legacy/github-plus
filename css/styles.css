@@ -4,3 +4,8 @@
     top: 8px;
     left: 8px;
 }
+
+.ext-github-plus-button.new-issue
+{
+    position: absolute;
+}
