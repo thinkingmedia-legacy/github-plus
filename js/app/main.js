@@ -1,3 +1,5 @@
+requirejs(["app/dispatch"]);
+
 GitHubPlus = {
 
 	templates: [],
@@ -52,7 +54,7 @@ chrome.extension.sendMessage({}, function(response) {
 		}
 
 		// on every page
-		$("a.minibutton.sidebar-button[title='Download this repository as a zip file']").addClass("primary");
+		$("a.minibutton.sidebar-button span.octicon.octicon-cloud-download").parent().addClass("primary");
 
 		// set the logo
 		GitHubPlus.template('logo',function(tmpl){
@@ -66,6 +68,7 @@ chrome.extension.sendMessage({}, function(response) {
 		// viewing a repo
 		if(path.match(/^\/.+\/.+$/))
 		{
+/*
 			GitHubPlus.template('button',function(tmpl){
 				var data = {
 					class: "new-issue",
@@ -83,6 +86,7 @@ chrome.extension.sendMessage({}, function(response) {
 				btn.css('top', p.top+3+'px');
 				btn.css('left', p.left+w+'px');
 			});
+*/
 		}
 	}
 	}, 10);
