@@ -17,7 +17,7 @@
 		{
 			"matches": ["https://github.com/*"],
 			"js": ["js/lib/require.js","js/app/main.js"],
-			"css": ["css/tipsy.css","css/styles.css"]
+			"css": ["css/styles.css"]
 		}
 	],
 	"web_accessible_resources": [
