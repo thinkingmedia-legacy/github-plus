@@ -1,8 +1,15 @@
-App.Features.Download = {
-	name: 'download'
-};
-
-define(["app/dispatch"],function(dispatch)
+/**
+ * Changes the "Download Zip" to green.
+ */
+define(['jquery','App/Dispatch'],function($,dispatch)
 {
-	dispatch.register("*",App.Features.Download);
+	var Download = {
+		name: 'download',
+		init: function()
+		{
+			$("a.minibutton.sidebar-button span.octicon.octicon-cloud-download").parent().addClass("primary");
+		}
+	};
+
+	dispatch.register(".*",Download);
 });

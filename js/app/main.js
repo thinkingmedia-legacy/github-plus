@@ -1,5 +1,3 @@
-App = {};
-
 /**
  * Hacks require to load modules into the extension's context and not the website.
  */
@@ -22,8 +20,9 @@ App = {};
 requirejs.config({
 	baseUrl: '/js',
 	paths: {
-		'app': '/js/app',
-		'feature': '/js/app/features',
+		'App': '/js/App',
+		'Feature': '/js/App/Features',
+
 		'lib': '/js/lib',
 		'backbone': '/js/lib/backbone-min',
 		'jquery': '/js/lib/jquery.min',
@@ -32,18 +31,20 @@ requirejs.config({
 		'underscore': '/js/lib/underscore-min'
 	}});
 
-requirejs(["feature/download"]);
+requirejs(["Feature/Download"]);
 
-requirejs(["app/dispatch"],function(dispatcher)
+requirejs(["App/Dispatch"],function(dispatch)
 {
-	var readyStateCheckInterval = setInterval(function()
-											  {
-												  if(document.readyState === "complete")
-												  {
-													  clearInterval(readyStateCheckInterval);
-													  console.log("document is ready");
-												  }
-											  },10);
+	function _waitReady()
+	{
+		if(document.readyState === "complete")
+		{
+			clearInterval(readyStateCheckInterval);
+			dispatch.ready();
+		}
+	}
+
+	var readyStateCheckInterval = setInterval(_waitReady,10);
 });
 
 
