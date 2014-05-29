@@ -1,9 +1,9 @@
 /**
  * Changes the "Download Zip" to green.
  */
-define(['jquery','App/Dispatch'],function($,dispatch)
+define(['App/Dispatch'],function(dispatch)
 {
-	var Download = {
+	var feature = {
 		name: 'download',
 		init: function()
 		{
@@ -11,5 +11,5 @@ define(['jquery','App/Dispatch'],function($,dispatch)
 		}
 	};
 
-	dispatch.register(".*",Download);
+	dispatch.register(".*",feature);
 });

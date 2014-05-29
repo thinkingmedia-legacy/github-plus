@@ -21,18 +21,23 @@ requirejs.config({
 	baseUrl: '/js',
 	paths: {
 		'App': '/js/App',
-		'Feature': '/js/App/Features',
+		'Feature': '/js/App/Features'
+	}
+});
 
-		'lib': '/js/lib',
-		'backbone': '/js/lib/backbone-min',
-		'jquery': '/js/lib/jquery.min',
-		'tipsy': '/js/lib/jquery.tipsy',
-		'mustache': '/js/lib/mustache',
-		'underscore': '/js/lib/underscore-min'
-	}});
+/**
+ * Load all the features.
+ */
+requirejs([
+			  "Feature/Download",
+			  "Feature/Logo",
+			  "Feature/Milestones",
+			  "Feature/DefaultFilter"
+		  ]);
 
-requirejs(["Feature/Download"]);
-
+/**
+ * Initialize the extension.
+ */
 requirejs(["App/Dispatch"],function(dispatch)
 {
 	function _waitReady()
@@ -49,35 +54,6 @@ requirejs(["App/Dispatch"],function(dispatch)
 
 
 /*
-
-GitHubPlus = {
-
-	templates: [],
-
-	*/
-/**
-	 * Loads a template
-	 *
-	 * @param {string} name
-	 * @param {function} fn Call back when the template is loaded.
-	 *//*
-
-	template: function(name,fn) {
-		if(GitHubPlus.template[name] === undefined)
-		{
-			$.get(chrome.extension.getURL('templates/'+name+'.mustache')).done(function(tmpl){
-				fn(tmpl);
-			});
-		}
-		else
-		{
-			fn(GitHubPlus.template[name]);
-		}
-	},
-
-	button: function(title) {
-	}
-};
 
 chrome.extension.sendMessage({}, function(response) {
 	var readyStateCheckInterval = setInterval(function() {
@@ -104,18 +80,6 @@ chrome.extension.sendMessage({}, function(response) {
 			var tmp = $("<h3>Issue Templates</h3><ul class='filter-list small'><li><a href='#' class='filter-item'><span class='octicon octicon-remove-close'></span><span class='name'>Test Template</span></a></li></ul>");
 			$(".column.sidebar").append(tmp)
 		}
-
-		// on every page
-		$("a.minibutton.sidebar-button span.octicon.octicon-cloud-download").parent().addClass("primary");
-
-		// set the logo
-		GitHubPlus.template('logo',function(tmpl){
-			var data = {
-				url: chrome.extension.getURL('icons/icon24.png')
-			};
-			$("div.header:first").append(Mustache.render(tmpl,data));
-			$(".ext-github-plus-logo").tipsy({gravity: 'w'});
-		});
 
 		// viewing a repo
 		if(path.match(/^\/.+\/.+$/))

@@ -16,8 +16,17 @@
 	"content_scripts": [
 		{
 			"matches": ["https://github.com/*"],
-			"js": ["js/lib/require.js","js/app/main.js"],
-			"css": ["css/styles.css"]
+			"js": [
+				"js/lib/jquery.min.js",
+				"js/lib/jquery.tipsy.js",
+				"js/lib/mustache.js",
+				"js/lib/underscore-min.js",
+				"js/lib/backbone-min.js",
+				"js/lib/require.js",
+				"js/app/main.js"
+			],
+			"css": ["css/styles.css"],
+			"run_at": "document_end"
 		}
 	],
 	"web_accessible_resources": [

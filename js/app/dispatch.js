@@ -20,11 +20,12 @@ define(function() {
 		 */
 		ready: function()
 		{
-			var path = window.location.pathname;
+			var url = window.location.pathname;
+			console.log(url);
 
 			for(var i=0; i < this.features.length; i++)
 			{
-				if(path.match(this.features[i].path))
+				if(this.features[i].path.match(url))
 				{
 					this.features[i].feature.init();
 				}
