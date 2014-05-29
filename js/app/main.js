@@ -1,15 +1,66 @@
-requirejs(["app/dispatch"]);
+App = {};
+
+/**
+ * Hacks require to load modules into the extension's context and not the website.
+ */
+(function() {
+	var global = this;
+	require.load = function (context, moduleName, url) {
+		var xhr;
+		xhr = new XMLHttpRequest();
+		xhr.open("GET", chrome.extension.getURL(url) + '?r=' + new Date().getTime(), true);
+		xhr.onreadystatechange = function (e) {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				eval.call(global, xhr.responseText + '\n//@ sourceURL=' + url);
+				context.completeLoad(moduleName)
+			}
+		};
+		xhr.send(null);
+	};
+})();
+
+requirejs.config({
+	baseUrl: '/js',
+	paths: {
+		'app': '/js/app',
+		'feature': '/js/app/features',
+		'lib': '/js/lib',
+		'backbone': '/js/lib/backbone-min',
+		'jquery': '/js/lib/jquery.min',
+		'tipsy': '/js/lib/jquery.tipsy',
+		'mustache': '/js/lib/mustache',
+		'underscore': '/js/lib/underscore-min'
+	}});
+
+requirejs(["feature/download"]);
+
+requirejs(["app/dispatch"],function(dispatcher)
+{
+	var readyStateCheckInterval = setInterval(function()
+											  {
+												  if(document.readyState === "complete")
+												  {
+													  clearInterval(readyStateCheckInterval);
+													  console.log("document is ready");
+												  }
+											  },10);
+});
+
+
+/*
 
 GitHubPlus = {
 
 	templates: [],
 
-	/**
+	*/
+/**
 	 * Loads a template
 	 *
 	 * @param {string} name
 	 * @param {function} fn Call back when the template is loaded.
-	 */
+	 *//*
+
 	template: function(name,fn) {
 		if(GitHubPlus.template[name] === undefined)
 		{
@@ -68,6 +119,7 @@ chrome.extension.sendMessage({}, function(response) {
 		// viewing a repo
 		if(path.match(/^\/.+\/.+$/))
 		{
+*/
 /*
 			GitHubPlus.template('button',function(tmpl){
 				var data = {
@@ -86,8 +138,9 @@ chrome.extension.sendMessage({}, function(response) {
 				btn.css('top', p.top+3+'px');
 				btn.css('left', p.left+w+'px');
 			});
-*/
+*//*
+
 		}
 	}
 	}, 10);
-});
+});*/

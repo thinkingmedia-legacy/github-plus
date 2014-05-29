@@ -3,7 +3,7 @@
 	"version": "1.0.1",
 	"manifest_version": 2,
 	"description": "Makes cosmetic changes to the GitHub website.",
-	"homepage_url": "https://github.com/thinkingmedia/ext-github",
+	"homepage_url": "https://github.com/thinkingmedia/github-plus",
 	"icons": {
 		"16": "icons/icon16.png",
 		"48": "icons/icon48.png",
@@ -13,26 +13,16 @@
 	"permissions": [
 		"https://github.com/*"
 	],
-	"content_scripts": [{
-		"matches": [
-			"https://github.com/*"
-		],
-		"js": [
-			"js/lib/jquery.min.js",
-			"js/lib/jquery.tipsy.js",
-			"js/lib/underscore-min.js",
-			"js/lib/backbone-min.js",
-			"js/lib/mustache.js",
-			"js/app/main.js"
-		],
-		"css": [
-			"css/tipsy.css",
-			"css/styles.css"
-		]
-	}],
+	"content_scripts": [
+		{
+			"matches": ["https://github.com/*"],
+			"js": ["js/lib/require.js","js/app/main.js"],
+			"css": ["css/tipsy.css","css/styles.css"]
+		}
+	],
 	"web_accessible_resources": [
-		"icons/icon24.png",
-		"templates/logo.mustache",
-		"templates/button.mustache"
+		"js/*",
+		"icons/*",
+		"templates/*"
 	]
 }
