@@ -12,10 +12,9 @@ define(['App/Dispatch','App/Template'],function(dispatch,template)
 					url: chrome.extension.getURL('icons/icon24.png')
 				};
 				$("div.header:first").append(Mustache.render(tmpl,data));
-				//$(".ext-github-plus-logo").tipsy({gravity: 'w'});
 			});
 		}
 	};
 
-	dispatch.register(".*",feature);
+	dispatch.register(/.*/,feature);
 });

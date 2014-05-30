@@ -7,7 +7,7 @@ define(function() {
 		/**
 		 * Adds a feature to the dispatcher.
 		 *
-		 * @param {string} path Regex of URL paths that must match.
+		 * @param {RegExp} path Regex of URL paths that must match.
 		 * @param feature
 		 */
 		register: function(path,feature)
@@ -20,12 +20,9 @@ define(function() {
 		 */
 		ready: function()
 		{
-			var url = window.location.pathname;
-			console.log(url);
-
 			for(var i=0; i < this.features.length; i++)
 			{
-				if(this.features[i].path.match(url))
+				if(window.location.pathname.match(this.features[i].path))
 				{
 					this.features[i].feature.init();
 				}

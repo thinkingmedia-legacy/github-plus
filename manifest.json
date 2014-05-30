@@ -20,8 +20,6 @@
 				"js/lib/jquery.min.js",
 				"js/lib/jquery.tipsy.js",
 				"js/lib/mustache.js",
-				"js/lib/underscore-min.js",
-				"js/lib/backbone-min.js",
 				"js/lib/require.js",
 				"js/app/main.js"
 			],

@@ -11,5 +11,5 @@ define(['App/Dispatch'],function(dispatch)
 		}
 	};
 
-	dispatch.register("/",feature);
+	dispatch.register(/^\/$/,feature);
 });
