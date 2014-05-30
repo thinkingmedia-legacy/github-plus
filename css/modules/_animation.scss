@@ -1,0 +1,14 @@
+/**
+ * These are global defaults for animation settings.
+ */
+$ani_speed: 0.5s !default;
+$ani_func: linear !default;
+
+@mixin fadeInHide($speed: $ani_speed, $func: $ani_func, $op: 0) {
+  opacity: $op;
+  @include transition(opacity,$speed,$func)
+}
+
+@mixin fadeInShow($op:1) {
+  opacity: $op;
+}

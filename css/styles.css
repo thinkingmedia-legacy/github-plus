@@ -1,3 +1,19 @@
+/**
+ * These are global defaults for animation settings.
+ */
+.ext-github-plus-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; }
+  .ext-github-plus-sticky.stuck {
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+
 .ext-github-plus-logo {
   position: absolute;
   top: 8px;

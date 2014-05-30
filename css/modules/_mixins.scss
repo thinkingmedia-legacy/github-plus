@@ -1,0 +1,225 @@
+$vendors: "-moz-", "-webkit-", "-ms-", "-o-", "";
+
+$modules: () !default;
+
+@mixin text-dots() {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity);
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    @each $vendor in $vendors {
+      #{$vendor}box-shadow:inset $top $left $blur $color;
+    }
+  } @else {
+    @each $vendor in $vendors {
+      #{$vendor}box-shadow: $top $left $blur $color;
+    }
+  }
+}
+
+@mixin text-shadow($hoff, $voff, $blur, $color) {
+  @each $vendor in $vendors {
+    #{$vendor}text-shadow: $hoff $voff $blur $color;
+  }
+}
+
+@mixin transition($property: all, $duration: 1s, $func: linear, $delay: 0s) {
+  @each $vendor in $vendors {
+    #{$vendor}transition: $property $duration $func $delay;
+  }
+}
+
+@mixin glow($size, $opacity: 0.5, $color: #000000) {
+  @include box-shadow(0,0,$size,rgba($color,$opacity));
+}
+
+@mixin innerGlow($size, $opacity: 0.5, $color: #000000) {
+  @include box-shadow(0,0,$size,rgba($color,$opacity), true);
+}
+
+@mixin rounded($radius: 0.5em) {
+  @each $vendor in $vendors {
+    #{$vendor}border-radius: $radius;
+  }
+}
+
+@mixin transform($value) {
+  @each $vendor in $vendors {
+    #{$vendor}transform: $value;
+  }
+}
+
+@mixin box-sizing($size: border-box) {
+  @each $vendor in $vendors {
+    #{$vendor}box-sizing: $size;
+  }
+}
+
+@mixin border-radius($size: 3px) {
+  @each $vendor in $vendors {
+    #{$vendor}border-radius: $size;
+  }
+}
+
+@mixin screen-below($size: 960px) {
+  @media only screen and (max-width: $size) {
+    @content
+  }
+}
+
+@mixin screen-above($size: 960px) {
+  @media only screen and (min-width: $size + 1px) {
+    @content
+  }
+}
+
+@mixin screen-range($min: 480px, $max: 960px) {
+  @media only screen and (min-width: $min + 1px) and (max-width: $max) {
+    @content
+  }
+}
+
+@mixin desktop() {
+  @include screen-above(1280px) {
+    @content
+  }
+}
+
+@mixin laptop() {
+  @include screen-range(960px,1280px) {
+    @content
+  }
+}
+
+@mixin up-to-laptop() {
+  @include screen-below(1280px) {
+    @content
+  }
+}
+
+
+@mixin tablet() {
+  @include screen-range(480px,960px) {
+    @content
+  }
+}
+
+@mixin up-to-tablet() {
+  @include screen-below(960px) {
+    @content
+  }
+}
+
+@mixin phone() {
+  @include screen-above(480px) {
+    @content
+  }
+}
+
+@mixin columns($count, $gap: 20px, $fill: auto) {
+  @each $vendor in $vendors {
+    #{$vendor}column-count: $count;
+    #{$vendor}column-gap: $gap;
+    #{$vendor}column-fill: $fill;
+  }
+}
+
+// --------------------------------------------------------
+// arrows
+// --------------------------------------------------------
+// $direction: top, left, right, bottom, top-left, top-right, bottom-left, bottom-right
+// $color: hex, rgb or rbga
+// $size: px or em
+// @example
+// .element{
+//     @include arrow(top, #000, 50px);
+// }
+@mixin arrow($direction, $color, $size){
+  display: block;
+  height: 0;
+  width: 0;
+
+  @if $direction == 'top' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  } @else if $direction == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  } @else if $direction == 'bottom' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+  } @else if $direction == 'left' {
+    border-top: $size solid transparent;
+    border-right: $size solid $color;
+    border-bottom: $size solid transparent;
+  } @else if $direction == 'top-left' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+  } @else if $direction == 'top-right' {
+    border-top: $size solid $color;
+    border-left: $size solid transparent;
+  } @else if $direction == 'bottom-left' {
+    border-bottom: $size solid $color;
+    border-right: $size solid transparent;
+  } @else if $direction == 'bottom-right' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+}
+
+@mixin scroll-bar-chrome($size, $primary, $secondary: lighten($primary, 25%)) {
+  ::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  ::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $primary;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $secondary;
+  }
+
+  ::-webkit-scrollbar-track:vertical {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    min-height: 28px;
+    border: 1px solid $secondary;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@mixin scroll-bar-ie($primary, $secondary)
+{
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $primary;
+    scrollbar-track-color: $secondary;
+  }
+}

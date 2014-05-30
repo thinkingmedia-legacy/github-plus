@@ -39,7 +39,8 @@ requirejs([
 			  "Feature/Logo",
 			  "Feature/Milestones",
 			  "Feature/DefaultFilter",
-			  "Feature/QuickEdit"
+			  "Feature/QuickEdit",
+			  "Feature/StickyHeader"
 		  ]);
 
 /**
