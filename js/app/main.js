@@ -41,6 +41,7 @@ requirejs([
 			  "Feature/DefaultFilter",
 			  "Feature/QuickEdit",
 			  "Feature/StickyHeader"
+			  //"Feature/Labels"
 		  ]);
 
 /**

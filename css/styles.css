@@ -26,3 +26,8 @@
 
 .ext-github-plus-button.new-issue {
   position: absolute; }
+
+.js-color-label-list h4 {
+  line-height: 24px; }
+  .js-color-label-list h4 span.minibutton {
+    float: right; }
